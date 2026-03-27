@@ -225,77 +225,67 @@ main {
 }
 
 .feature-card:hover {
-  border-color: var(--purple-light);
-  box-shadow: 0 12px 48px var(--glow); /* Stronger shadow on hover */
-  transform: translateY(-6px) scale(1.02); /* More pronounced lift and slight scale */
-}
-
-/* Adding active state for cards */
-.feature-card:active {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px var(--glow);
+  border-color: rgba(150,100,255,0.5);
+  box-shadow: 0 8px 30px var(--glow);
+  transform: translateY(-5px);
 }
 
 .feature-icon {
-  font-size: 3.5rem; /* Larger icons */
-  margin-bottom: 18px;
+  font-size: 3rem;
+  margin-bottom: 15px;
   display: block;
-  text-shadow: 0 0 15px rgba(240,192,96,0.7); /* Icon glow */
 }
 
 .feature-card h2 {
-  font-size: 1.5rem; /* Larger heading */
+  font-size: 1.4rem;
   color: var(--gold);
   margin-bottom: 10px;
-  letter-spacing: 0.05em;
 }
 
 .feature-card p {
-  font-size: 0.95rem; /* Slightly larger text */
+  font-size: 0.9rem;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* New CTA Button Styles (replacing feature-badge implicitly) */
-.btn-primary, .btn-secondary {
-  display: block;
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 700;
+/* ボタンのスタイルを調整 */
+.feature-card .btn-primary,
+.feature-card .btn-secondary {
+  display: inline-block; /* インラインブロックで横並びに */
+  width: auto; /* 幅を自動調整 */
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  text-align: center;
-  letter-spacing: 0.05em;
+  margin-top: 15px; /* カード内の要素としてマージンを調整 */
+  margin-right: 10px; /* ボタン間のスペース */
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--bg-dark); /* Darker text for contrast */
+.feature-card .btn-primary {
+  background-image: linear-gradient(45deg, var(--gold), var(--gold-light));
+  color: var(--bg-dark);
   border: none;
   box-shadow: 0 4px 15px rgba(240,192,96,0.4);
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  box-shadow: 0 6px 20px rgba(240,192,96,0.6);
+.feature-card .btn-primary:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240,192,96,0.6);
 }
 
-.btn-secondary {
+.feature-card .btn-secondary {
   background: transparent;
   color: var(--purple-light);
   border: 1px solid var(--purple-light);
   box-shadow: 0 2px 8px rgba(107,53,200,0.2);
 }
 
-.btn-secondary:hover {
-  background: rgba(107,53,200,0.2);
+.feature-card .btn-secondary:hover {
+  background: rgba(107,53,200,0.1);
   color: var(--gold);
   border-color: var(--gold);
-  box-shadow: 0 4px 12px rgba(107,53,200,0.4);
-  transform: translateY(-2px);
 }
 
 /* ---- Form Styles ---- */
