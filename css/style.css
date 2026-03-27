@@ -30,33 +30,11 @@ body {
   line-height: 1.7;
   background-image:
     radial-gradient(ellipse at 20% 20%, rgba(107,53,200,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(30,10,80,0.3) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 80%, rgba(30,10,80,0.3) 0%, transparent 50%),
+    /* Adding star background for aesthetic */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%230a0a1a" width="100%" height="100%"/><defs><filter id="filter2" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feFlood flood-color="%23fff" result="flood"/><feComposite in="flood" in2="SourceGraphic" operator="in" result="composite"/><feGaussianBlur in="composite" stdDeviation="1.5" result="blur"/></filter><filter id="filter3" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feFlood flood-color="%23fff" result="flood"/><feComposite in="flood" in2="SourceGraphic" operator="in" result="composite"/><feGaussianBlur in="composite" stdDeviation="1" result="blur"/></filter></defs><g filter="url(%23filter2)"><circle cx="10%" cy="15%" r="0.5" fill="%23fff"><animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0.8;0.3;0.8"/></circle><circle cx="30%" cy="40%" r="0.8" fill="%23fff"><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0.6;0.2;0.6"/></circle><circle cx="50%" cy="10%" r="1" fill="%23fff"><animate attributeName="opacity" dur="3.5s" repeatCount="indefinite" values="0.9;0.4;0.9"/></circle><circle cx="70%" cy="60%" r="0.6" fill="%23fff"><animate attributeName="opacity" dur="2.8s" repeatCount="indefinite" values="0.5;0.1;0.5"/></circle><circle cx="85%" cy="25%" r="0.9" fill="%23fff"><animate attributeName="opacity" dur="4.2s" repeatCount="indefinite" values="0.7;0.2;0.7"/></circle><circle cx="15%" cy="70%" r="0.7" fill="%23fff"><animate attributeName="opacity" dur="3.7s" repeatCount="indefinite" values="0.4;0.1;0.4"/></circle><circle cx="60%" cy="80%" r="1.1" fill="%23fff"><animate attributeName="opacity" dur="3.2s" repeatCount="indefinite" values="0.6;0.2;0.6"/></circle><circle cx="45%" cy="55%" r="0.5" fill="%23fff"><animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" values="0.3;0.1;0.3"/></circle></g><g filter="url(%23filter3)"><circle cx="20%" cy="5%" r="0.4" fill="%23fff"><animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0.7;0.2;0.7"/></circle><circle cx="5%" cy="80%" r="0.7" fill="%23fff"><animate attributeName="opacity" dur="3.9s" repeatCount="indefinite" values="0.5;0.1;0.5"/></circle><circle cx="95%" cy="70%" r="0.6" fill="%23fff"><animate attributeName="opacity" dur="4.1s" repeatCount="indefinite" values="0.8;0.3;0.8"/></circle></g></svg>') no-repeat center center / cover;
 }
 
-/* ---- Stars Background ---- */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 75% 5%, rgba(255,255,255,0.8) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ---- Header ---- */
 header {
   position: relative;
   z-index: 10;
@@ -64,6 +42,9 @@ header {
   padding: 60px 20px 40px;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(107,53,200,0.1) 0%, transparent 100%);
+  /* Ensure header background doesn't block stars */
+  background-color: rgba(10, 10, 26, 0.7);
+  backdrop-filter: blur(5px);
 }
 
 .site-logo {
@@ -198,17 +179,29 @@ main {
 }
 
 .hero h1 {
-  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-size: clamp(2rem, 6vw, 3.8rem); /* Larger, more impactful font size */
   color: var(--gold);
-  margin-bottom: 16px;
-  line-height: 1.4;
+  margin-bottom: 12px; /* Reduced margin, subtitle comes next */
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(240,192,96,0.5); /* Enhanced text shadow */
 }
 
-.hero p {
-  color: var(--text-muted);
-  max-width: 560px;
-  margin: 0 auto 36px;
-  font-size: 1rem;
+.hero-subtitle { /* New style for the catchphrase */
+  color: var(--silver); /* Brighter color */
+  max-width: 600px;
+  margin: 0 auto 40px; /* More space below */
+  font-size: clamp(1rem, 2.5vw, 1.4rem); /* Responsive font size */
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(192,204,232,0.3);
+}
+
+.feature-actions { /* Styling for the new CTA buttons within feature cards */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* ---- Feature Grid ---- */
@@ -233,37 +226,76 @@ main {
 
 .feature-card:hover {
   border-color: var(--purple-light);
-  box-shadow: 0 8px 40px var(--glow);
-  transform: translateY(-4px);
+  box-shadow: 0 12px 48px var(--glow); /* Stronger shadow on hover */
+  transform: translateY(-6px) scale(1.02); /* More pronounced lift and slight scale */
+}
+
+/* Adding active state for cards */
+.feature-card:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--glow);
 }
 
 .feature-icon {
-  font-size: 2.8rem;
-  margin-bottom: 14px;
+  font-size: 3.5rem; /* Larger icons */
+  margin-bottom: 18px;
   display: block;
+  text-shadow: 0 0 15px rgba(240,192,96,0.7); /* Icon glow */
 }
 
 .feature-card h2 {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Larger heading */
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
 }
 
 .feature-card p {
-  font-size: 0.88rem;
+  font-size: 0.95rem; /* Slightly larger text */
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-.feature-badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 4px 12px;
-  background: rgba(107,53,200,0.3);
-  border: 1px solid var(--purple-light);
-  border-radius: 12px;
-  font-size: 0.78rem;
+/* New CTA Button Styles (replacing feature-badge implicitly) */
+.btn-primary, .btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--bg-dark); /* Darker text for contrast */
+  border: none;
+  box-shadow: 0 4px 15px rgba(240,192,96,0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  box-shadow: 0 6px 20px rgba(240,192,96,0.6);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
   color: var(--purple-light);
+  border: 1px solid var(--purple-light);
+  box-shadow: 0 2px 8px rgba(107,53,200,0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(107,53,200,0.2);
+  color: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(107,53,200,0.4);
+  transform: translateY(-2px);
 }
 
 /* ---- Form Styles ---- */
@@ -273,6 +305,7 @@ main {
   border-radius: 20px;
   padding: 40px 36px;
   margin-bottom: 32px;
+  box-shadow: 0 0 30px rgba(107, 53, 200, 0.1); /* Subtle glow for forms too */
 }
 
 .form-title {
@@ -324,28 +357,32 @@ main {
 .btn-uranai {
   display: block;
   width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, var(--purple), #4a1fa8);
-  border: 1px solid var(--purple-light);
-  border-radius: 12px;
+  padding: 18px 24px; /* Larger padding */
+  background: linear-gradient(135deg, var(--purple-light), var(--purple)); /* Lighter purple dominant */
+  border: none; /* Remove border for a cleaner look */
+  border-radius: 15px; /* More rounded corners */
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.2rem; /* Larger font size */
   font-family: inherit;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700; /* Bolder font */
+  letter-spacing: 0.12em; /* More spacing */
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 8px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  transition: all 0.35s ease; /* Smoother transition */
+  margin-top: 15px; /* More space above */
+  text-shadow: 0 0 15px rgba(255,255,255,0.4); /* Stronger text shadow */
+  box-shadow: 0 8px 30px var(--glow); /* Pronounced shadow */
 }
 
 .btn-uranai:hover {
-  background: linear-gradient(135deg, var(--purple-light), var(--purple));
-  box-shadow: 0 4px 20px var(--glow);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--purple), #4a1fa8); /* Deeper shade on hover */
+  box-shadow: 0 12px 40px rgba(107,53,200,0.6); /* Even stronger shadow */
+  transform: translateY(-4px) scale(1.01); /* Lift and subtle scale */
 }
 
-.btn-uranai:active { transform: translateY(0); }
+.btn-uranai:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px var(--glow); /* Reset shadow on active */
+}
 
 /* ---- Result Box ---- */
 #result, .result-box {
