@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>月星座診断【無料】生年月日で感情・本能・恋愛パターンを鑑定｜月の占い</title>
+  <meta name="description" content="生年月日を入力するだけで月星座を無料算出。月星座は感情・本能・内面の自己を表します。牡羊座〜魚座まで全12星座の特徴・恋愛・内なる自己を詳しく解説。">
+  <meta name="keywords" content="月星座,月の星座,月占い,感情,内面,無料,生年月日,スピリチュアル">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clawtech6477.github.io/tsuki-uranai/tsuki.html">
+
+  <meta property="og:title" content="月星座診断【無料】感情・本能・恋愛パターンを鑑定｜月の占い">
+  <meta property="og:description" content="生年月日から月星座を算出。感情・内面・恋愛パターンを詳しく読み解きます。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://clawtech6477.github.io/tsuki-uranai/tsuki.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "月星座診断【無料】感情・本能・恋愛パターンを鑑定",
+    "url": "https://clawtech6477.github.io/tsuki-uranai/tsuki.html",
+    "description": "生年月日から月星座を算出するページ",
+    "isPartOf": { "@type": "WebSite", "url": "https://clawtech6477.github.io/tsuki-uranai/" }
+  }
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="site-logo">
+    <span class="moon-icon">🌙</span>月の占い
+  </div>
+  <p class="site-tagline">— 宇宙のエネルギーで読み解く、あなたの本質と運命 —</p>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">ホーム</a>
+    <a href="suuhi.html">数秘術</a>
+    <a href="tsuki.html" class="active">月星座</a>
+    <a href="aisho.html">相性診断</a>
+    <a href="about.html">サイトについて</a>
+  </div>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="index.html">ホーム</a><span>›</span>月星座診断
+  </div>
+
+  <h1 class="section-title">🌙 月星座診断</h1>
+  <p class="section-subtitle">生年月日から月の位置を算出し、感情・内面を読み解きます</p>
+  <div class="divider"></div>
+
+  <!-- AdSense Top -->
+  <div class="ad-unit">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- What is Moon Sign -->
+  <div class="card" style="margin-bottom:28px;">
+    <h2 style="color:var(--gold);margin-bottom:12px;font-size:1.15rem;">🌕 月星座とは？</h2>
+    <p style="color:var(--text-muted);font-size:0.93rem;line-height:1.9;">
+      月星座は、あなたが生まれた瞬間に月が位置していた黄道十二宮の星座のこと。太陽星座（一般的な「星座占い」）が「社会的な自己・表の顔」を表すのに対し、月星座は<strong style="color:var(--silver);">「感情・本能・無意識の反応・内なる自己」</strong>を表します。<br><br>
+      月は約2.5日ごとに星座を移動するため、同じ誕生日でも生まれた時間によって異なることがあります。当サイトでは生年月日による近似値を算出しています。
+    </p>
+  </div>
+
+  <!-- Form -->
+  <div class="uranai-form">
+    <div class="form-title">🌙 生年月日を入力してください</div>
+    <form id="moon-form">
+      <div class="form-group">
+        <label for="moon-birthdate">生年月日 <span style="color:#e74c3c;">*</span></label>
+        <input type="date" id="moon-birthdate" name="birthdate" required
+               min="1920-01-01" max="2010-12-31">
+      </div>
+      <button type="submit" class="btn-uranai">🌙 月星座診断を開始する</button>
+    </form>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="moon-loading">
+    <div class="spinner"></div>
+    <p style="color:var(--text-muted);margin-top:12px;font-size:0.9rem;">月の位置を計算しています…</p>
+  </div>
+
+  <!-- Result -->
+  <div id="moon-result" class="result-box"></div>
+
+  <!-- AdSense Middle -->
+  <div class="ad-unit" style="margin-top:32px;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="rectangle"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Signs Guide -->
+  <div class="info-section">
+    <h2>🌟 月星座12星座一覧</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-icon">♈</span>
+        <h3>月の牡羊座</h3>
+        <p>感情が情熱的で直感的。素早く行動し、エネルギッシュに生きます。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♉</span>
+        <h3>月の牡牛座</h3>
+        <p>安定した感情と美意識。安心できる環境と感覚的な喜びを求めます。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♊</span>
+        <h3>月の双子座</h3>
+        <p>知的で変化を好む感情パターン。コミュニケーションで心を満たします。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♋</span>
+        <h3>月の蟹座</h3>
+        <p>最も感受性豊か。家族・家庭への強い愛着と深い直感を持ちます。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♌</span>
+        <h3>月の獅子座</h3>
+        <p>ドラマティックな感情表現。認められることで輝く創造的な内面。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♍</span>
+        <h3>月の乙女座</h3>
+        <p>感情を分析する傾向。秩序と実用性の中で心の平和を得ます。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♎</span>
+        <h3>月の天秤座</h3>
+        <p>調和と美を求める感情。パートナーシップの中で安定します。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♏</span>
+        <h3>月の蠍座</h3>
+        <p>深く強烈な感情世界。変容と再生を繰り返す魂の持ち主。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♐</span>
+        <h3>月の射手座</h3>
+        <p>自由と冒険で輝く感情。哲学的視点と楽観性が持ち味。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♑</span>
+        <h3>月の山羊座</h3>
+        <p>感情を制御しながら目標へ。達成と責任が感情の核心。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♒</span>
+        <h3>月の水瓶座</h3>
+        <p>知性で感情を処理。独自の価値観と博愛主義の内面。</p>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">♓</span>
+        <h3>月の魚座</h3>
+        <p>最も霊感豊か。深い共感力と神秘的な夢の世界に生きます。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purely ASP -->
+  <div class="asp-banner">
+    <h3>🌙 月のエネルギーを使った本格鑑定へ</h3>
+    <p>月星座のプロ鑑定師があなたの感情パターン・心の傷・愛情表現のクセを深く読み解きます。恋愛の悩みも今すぐ相談！</p>
+    <a href="https://px.a8.net/svt/ejp?a8mat=XXXXX" rel="nofollow sponsored" target="_blank" class="btn-asp">
+      ピュアリで月星座鑑定を受ける →
+    </a>
+  </div>
+
+  <!-- AdSense Bottom -->
+  <div class="ad-unit">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Note -->
+  <div class="card" style="margin-top:20px;">
+    <h2 style="color:var(--gold);margin-bottom:12px;font-size:1.1rem;">⚠️ 月星座の精度について</h2>
+    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.9;">
+      月は約2.5日ごとに星座を移動します。当サイトでは生年月日（時間・場所なし）から近似値を算出しています。誕生日の前後1〜2日では結果が前後の星座になることがあります。<br>
+      より正確な月星座を知りたい方は、生まれた時間・場所も入力できる専門サイトまたはプロの鑑定師にご相談ください。
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">ホーム</a>
+    <a href="suuhi.html">数秘術</a>
+    <a href="tsuki.html">月星座</a>
+    <a href="aisho.html">相性診断</a>
+    <a href="about.html">サイトについて</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+  <p>© 2024 月の占い | 本サイトの診断はエンターテインメント目的です</p>
+</footer>
+
+<a href="#" class="scroll-top">↑</a>
+
+<script src="js/main.js"></script>
+<script src="js/moon.js"></script>
+</body>
+</html>
