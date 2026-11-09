@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow:
 
-Sitemap: https://clawtech6477.github.io/tsuki-uranai/sitemap.xml
+Sitemap: https://tsuki.clawtechjp.com/sitemap.xml
