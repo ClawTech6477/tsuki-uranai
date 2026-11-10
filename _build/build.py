@@ -13,7 +13,19 @@ MOON_ICON = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke
              'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>')
 
 
-def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, crumb=None, og_title=None):
+import os
+HERO_ALT = {"hero": "夜の海に昇る満月の水彩イラスト", "hero_tsuki": "12星座に囲まれた三日月の水彩イラスト",
+            "hero_aisho": "満月を見上げる2人の水彩イラスト", "hero_suuhi": "満月のまわりに浮かぶ数字の水彩イラスト"}
+
+
+def hero_html(name):
+    if not os.path.exists(os.path.join(ROOT, "img", name + "-720.webp")):
+        return ""
+    return (f'<figure class="tk-heroimg"><img src="img/{name}-720.webp" srcset="img/{name}-720.webp 720w, img/{name}-1280.webp 1280w" '
+            f'sizes="(max-width: 760px) 100vw, 720px" width="1280" height="720" alt="{HERO_ALT[name]}" fetchpriority="high" decoding="async"></figure>')
+
+
+def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, crumb=None, og_title=None, hero=None):
     url = BASE + ("" if fname == "index.html" else fname)
     ld = [{"@context": "https://schema.org", "@type": "WebPage", "name": og_title or title, "url": url,
            "description": desc, "dateModified": TODAY, "inLanguage": "ja",
@@ -39,7 +51,10 @@ def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, cru
 <meta property="og:type" content="{'website' if fname == 'index.html' else 'article'}">
 <meta property="og:url" content="{BASE}{fname}">
 <meta property="og:site_name" content="月の占い">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{BASE}img/og.jpg">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z%22 fill=%22%23e0a020%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://clawtechjp.com/ui/ct-ui.css">
@@ -53,7 +68,7 @@ def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, cru
 <header class="ct-header tk-header"><div class="ct-container ct-header__in"><a class="tk-brand" href="index.html">{MOON_ICON}月の占い</a><nav class="tk-nav" aria-label="メイン">{nav}</nav></div></header>
 <main id="main" class="ct-container">
 {crumb_html}
-<section class="ct-section" style="padding-top:var(--ct-s-5)">
+{hero_html(hero) if hero else ""}<section class="ct-section" style="padding-top:var(--ct-s-5);padding-bottom:var(--ct-s-2)">
 <h1 class="ct-h1">{h1}</h1>
 <p class="ct-lead">{lead}</p>
 </section>
@@ -105,6 +120,8 @@ SIGN_SHORT = [("牡羊座", "気持ちがすぐ行動に出るタイプ。思い
               ("水瓶座", "気持ちを頭で整理するタイプ。自分らしさを認めてもらうと安心します。"),
               ("魚座", "共感力が高く、人の気持ちを自分のことのように感じ取ります。")]
 
+SIGN_KEYS = ["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"]
+
 STEPS_MOON = ('<ol class="ct-steps" id="moon-steps" hidden aria-live="polite">'
               '<li>生まれた瞬間の月の位置を計算</li><li>その日に月が星座をまたいだか確認</li>'
               '<li>生まれた日の月齢を計算</li><li>これからの新月・満月を計算</li></ol>')
@@ -131,7 +148,7 @@ tsuki_body = f"""
 <div class="ct-body"><p>月星座は、あなたが生まれた瞬間に月があった星座のことです。誕生日で決まる「星座占い」の星座(太陽星座)が人から見える性格を表すのに対し、月星座は気持ちの動き方・安心するもの・とっさの反応といった内側の自分を表すとされます。</p>
 <p>月は約27日で12星座をひと回りするため、同じ年の同じ月に生まれても数日違えば月星座は変わります。日によっては1日の途中で星座が切り替わるので、当サイトでは切り替わりの時刻まで計算して表示します。</p></div></section>
 <section class="ct-section"><h2 class="ct-h2">月星座12星座一覧</h2><ul class="tk-signs">
-{''.join(f'<li><b>月{n}</b><p>{t}</p></li>' for n, t in SIGN_SHORT)}
+{''.join(f'<li><img src="img/signs/{k}-s.webp" width="64" height="64" alt="" loading="lazy" decoding="async"><div><b>月{n}</b><p>{t}</p></div></li>' for k, (n, t) in zip(SIGN_KEYS, SIGN_SHORT))}
 </ul></section>
 {faq_html(tsuki_faq)}
 <nav class="ct-related" aria-label="関連ページ"><ul><li><a href="aisho.html">2人の月星座で相性を見る</a></li><li><a href="suuhi.html">数秘術でライフパスナンバーを見る</a></li></ul></nav>
@@ -139,7 +156,7 @@ tsuki_body = f"""
 page("tsuki.html", "月星座診断【無料】生年月日で感情・本能・恋愛パターンを鑑定｜月の占い",
      "生年月日(と生まれた時刻)から、月が何座にあったかを天文計算で割り出します。星座が切り替わる日は時刻まで表示。月星座ごとの気持ちの動き方・恋愛・落ち込んだ時に効くこと、これからの新月・満月の過ごし方もわかります。",
      "月星座診断", "生まれた瞬間に月が何座にあったかを、天文計算で割り出します。星座が切り替わる日は時刻まで表示します。",
-     tsuki_body, ld_extra=[faq_ld(tsuki_faq)], crumb="月星座診断", og_title="月星座診断【無料】感情・本能・恋愛パターンを鑑定｜月の占い")
+     tsuki_body, ld_extra=[faq_ld(tsuki_faq)], crumb="月星座診断", og_title="月星座診断【無料】感情・本能・恋愛パターンを鑑定｜月の占い", hero="hero_tsuki")
 
 # ---------------- 相性 ----------------
 aisho_faq = [
@@ -168,7 +185,7 @@ aisho_body = f"""
 page("aisho.html", "相性診断【無料】2人の生年月日で月星座と数秘術の相性を診断｜月の占い",
      "2人の生年月日から月星座とライフパスナンバーを計算し、気持ちの通じ方・すれ違いやすい場面・相手が落ち込んだ時に効く接し方を具体的に診断します。登録不要・無料。",
      "相性診断", "2人の月星座の関係から、気持ちの通じ方と、相手が落ち込んだ時に効く接し方を出します。",
-     aisho_body, ld_extra=[faq_ld(aisho_faq)], crumb="相性診断")
+     aisho_body, ld_extra=[faq_ld(aisho_faq)], crumb="相性診断", hero="hero_aisho")
 
 # ---------------- 数秘術 ----------------
 NUM_SHORT = [(1, "リーダー", "独立・開拓・始めること"), (2, "協調者", "調和・感受性・支えること"), (3, "表現者", "創造・喜び・伝えること"),
@@ -199,7 +216,7 @@ suuhi_body = f"""
 page("suuhi.html", "数秘術診断【無料】生年月日でライフパスナンバーと今年の個人年を算出｜月の占い",
      "生年月日からライフパスナンバー(1〜9・11・22・33)を計算の途中経過つきで算出。本質・恋愛・仕事・気をつけたいことに加え、今年と来年の個人年のテーマもわかります。",
      "数秘術診断", "生年月日からライフパスナンバーを、計算の途中経過つきで出します。今年と来年の「個人年」もわかります。",
-     suuhi_body, ld_extra=[faq_ld(suuhi_faq)], crumb="数秘術診断")
+     suuhi_body, ld_extra=[faq_ld(suuhi_faq)], crumb="数秘術診断", hero="hero_suuhi")
 
 # ---------------- トップ ----------------
 idx_faq = [
@@ -213,7 +230,7 @@ cards = [("tsuki.html", "月星座診断", "生まれた瞬間の月の星座か
 idx_body = f"""
 <section class="ct-panel ct-panel--raised" id="today-moon" aria-live="polite"><p>いまの月を計算しています。JavaScriptが無効な場合は表示されません。</p></section>
 <section class="ct-section"><h2 class="ct-h2">診断を選ぶ</h2><div class="tk-cards">
-{''.join(f'<a href="{h}"><div class="ct-panel"><h3 class="ct-h3">{t}</h3><p class="ct-caption">{d}</p></div></a>' for h, t, d in cards)}
+{''.join(f'<a href="{h}"><div class="ct-panel tk-cardimg"><img src="img/hero_{h[:-5]}-320.webp" width="320" height="180" loading="lazy" alt=""><div><h3 class="ct-h3">{t}</h3><p class="ct-caption">{d}</p></div></div></a>' for h, t, d in cards)}
 </div></section>
 <section class="ct-section"><h2 class="ct-h2">月の占いでわかること</h2><div class="ct-body">
 <p>月は約2日半ごとに星座を移り、約29.5日で新月から満月を経てまた新月に戻ります。当サイトは月の位置を天文計算で求め、あなたの月星座と、これから来る新月・満月があなたの月星座とどんな角度になるかを出します。</p>
@@ -222,8 +239,8 @@ idx_body = f"""
 """
 page("index.html", "月の占い｜月星座・相性・数秘術を生年月日で無料診断",
      "生年月日から月星座・相性・数秘術を無料で診断。月の位置を天文計算で求め、星座が切り替わる日は時刻まで表示します。いまの月の星座と月齢、次の新月・満月があなたにどう関わるかも毎日わかります。",
-     "生年月日でわかる、あなたの月", "いまの月と、あなたの月星座から見たこれからの新月・満月。開くたびに最新の位置で計算します。",
-     idx_body, ld_extra=[faq_ld(idx_faq), {"@context": "https://schema.org", "@type": "WebSite", "name": "月の占い", "url": BASE, "inLanguage": "ja"}])
+     '<span class="tk-nw">生年月日でわかる、</span><span class="tk-nw">あなたの月</span>', "いまの月と、あなたの月星座から見たこれからの新月・満月。開くたびに最新の位置で計算します。",
+     idx_body, hero="hero", ld_extra=[faq_ld(idx_faq), {"@context": "https://schema.org", "@type": "WebSite", "name": "月の占い", "url": BASE, "inLanguage": "ja"}])
 
 # ---------------- サイトについて / プライバシー ----------------
 page("about.html", "サイトについて｜月の占い", "月の占いの運営者・計算方法・データの扱いについて。",

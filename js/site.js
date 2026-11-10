@@ -133,9 +133,10 @@
   }
 
   /* ---------- 月星座ページ ---------- */
+  function art(i, small) { return '<img class="tk-art" src="img/signs/' + K[i] + (small ? '-s' : '') + '.webp" width="' + (small ? 160 : 480) + '" height="' + (small ? 160 : 480) + '" alt="月' + esc(S[K[i]].ja) + 'の水彩イラスト" decoding="async">'; }
   function signBlock(i) {
     var s = S[K[i]];
-    return '<div class="ct-stack" style="--ct-gap:20px"><section><h3 class="ct-h3">月' + esc(s.ja) + 'の本質</h3><p>' + esc(s.description) + '</p></section>' +
+    return '<div class="ct-stack" style="--ct-gap:20px"><figure class="tk-signart">' + art(i) + '</figure><section><h3 class="ct-h3">月' + esc(s.ja) + 'の本質</h3><p>' + esc(s.description) + '</p></section>' +
       '<section><h3 class="ct-h3">恋愛と気持ちの動き方</h3><p>' + esc(s.love) + '</p></section>' +
       '<section><h3 class="ct-h3">落ち込んだ時に効くもの</h3><p>' + esc(s.comfort) + '</p></section>' +
       '<section><h3 class="ct-h3">心がざわつくきっかけ</h3><p>' + esc(s.trigger) + '</p></section>' +
@@ -203,9 +204,9 @@
         var numTxt = la === lb ? "同じ数どうし。大事にしている物が近く、判断の基準が揃いやすい2人です。" :
           (N[la].name + "の" + la + "と、" + N[lb].name + "の" + lb + "。" + (Math.abs(la % 9 - lb % 9) <= 2 ? "進む速さが近く、一緒に決めごとをしやすい組み合わせです。" : "得意なことが重ならないので、役割を分けるほど強くなる組み合わせです。"));
         box.innerHTML = '<div class="ct-panel ct-panel--raised ct-stack" style="--ct-gap:20px">' +
-          '<div class="tk-pair"><div><p class="ct-caption">あなた</p><p class="tk-mid">月' + sj(na.sign) + '</p><p class="ct-caption">数秘 <span class="ct-num">' + la + '</span></p></div>' +
+          '<div class="tk-pair"><div>' + art(na.sign) + '<p class="ct-caption">あなた</p><p class="tk-mid">月' + sj(na.sign) + '</p><p class="ct-caption">数秘 <span class="ct-num">' + la + '</span></p></div>' +
           '<div class="tk-pair__mid" aria-hidden="true"><svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 12h36M28 4l8 8-8 8M12 4 4 12l8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
-          '<div><p class="ct-caption">お相手</p><p class="tk-mid">月' + sj(nb.sign) + '</p><p class="ct-caption">数秘 <span class="ct-num">' + lb + '</span></p></div></div>' + warn +
+          '<div>' + art(nb.sign) + '<p class="ct-caption">お相手</p><p class="tk-mid">月' + sj(nb.sign) + '</p><p class="ct-caption">数秘 <span class="ct-num">' + lb + '</span></p></div></div>' + warn +
           '<section><p class="ct-eyebrow">2人の月の関係</p><h3 class="ct-h3">' + P[0] + '</h3><p>' + P[1] + '</p></section>' +
           '<section><h3 class="ct-h3">お相手が落ち込んだ時は</h3><p>' + esc(B1.comfort) + '。</p><p class="ct-caption">避けたいこと: ' + esc(B1.trigger) + '</p></section>' +
           '<section><h3 class="ct-h3">あなたが落ち込んだ時に、お相手に頼むと効くこと</h3><p>' + esc(A1.comfort) + '。</p><p class="ct-caption">あなたがざわつきやすいこと: ' + esc(A1.trigger) + '</p></section>' +

@@ -43,3 +43,17 @@ html,body{overflow-x:hidden}
 .tk-result{outline:none;scroll-margin-top:72px}
 .ct-field__err{display:none;color:var(--ct-error)}
 .ct-field.is-error .ct-field__err{display:block}
+/* イラスト(ローカル生成・水彩) */
+.tk-heroimg{margin:var(--ct-s-4) 0 0;border-radius:var(--ct-r-lg);overflow:hidden;box-shadow:var(--ct-shadow-2);aspect-ratio:16/9;background:var(--ct-surface-2)}
+.tk-heroimg img{display:block;width:100%;height:100%;object-fit:cover}
+.tk-signs li{display:flex;gap:var(--ct-s-3);align-items:flex-start}
+.tk-signs li img{flex:none;width:64px;height:64px;border-radius:var(--ct-r-md);object-fit:cover}
+.tk-signart{margin:0;border-radius:var(--ct-r-lg);overflow:hidden;box-shadow:var(--ct-shadow-1);max-width:360px;aspect-ratio:1;background:var(--ct-surface-2)}
+.tk-signart img{display:block;width:100%;height:100%;object-fit:cover}
+.tk-pair .tk-art{display:block;width:100%;max-width:180px;height:auto;aspect-ratio:1;margin:0 auto var(--ct-s-2);border-radius:var(--ct-r-md);object-fit:cover;box-shadow:var(--ct-shadow-1)}
+.tk-nw{display:inline-block}
+/* 月の影: 明るい画面では夜空色、暗い画面では面の色(新月でも月の形が見える) */
+.tk-moon__dark{fill:var(--ct-text-2)}
+@media (prefers-color-scheme:dark){.tk-moon__dark{fill:var(--ct-surface-2)}}
+.tk-cardimg{display:flex;gap:var(--ct-s-4);align-items:center}
+.tk-cardimg img{flex:0 0 112px;width:112px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--ct-r-md)}
