@@ -1,0 +1,45 @@
+/* 月の占い サイト固有(トークンのみ使用。部品は ct-ui.css) */
+html,body{overflow-x:hidden}
+.tk-brand{font-weight:700;text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:var(--ct-s-2)}
+.tk-nav{display:flex;gap:var(--ct-s-1);flex-wrap:wrap}
+.tk-nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 var(--ct-s-3);border-radius:var(--ct-r-pill);text-decoration:none;color:var(--ct-text-2);font-size:var(--ct-fs-sm);font-weight:600}
+.tk-nav a[aria-current="page"]{background:var(--ct-surface-2);color:var(--ct-text)}
+@media (max-width:560px){.tk-header .ct-header__in{flex-direction:column;align-items:flex-start;padding-block:var(--ct-s-2)}.tk-nav{margin-inline:calc(var(--ct-s-3)*-1)}}
+.tk-moon__dark{fill:var(--ct-surface-2);stroke:var(--ct-line-strong);stroke-width:1}
+.tk-moon__lit{fill:var(--ct-warn)}
+.tk-today,.tk-hero{display:flex;gap:var(--ct-s-5);align-items:center}
+.tk-today__main{font-size:var(--ct-fs-xl);font-weight:700;line-height:1.3}
+.tk-big{font-size:var(--ct-fs-3xl);font-weight:700;line-height:1.2}
+.tk-mid{font-size:var(--ct-fs-xl);font-weight:700}
+.tk-num{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:var(--ct-accent-soft);color:var(--ct-accent);font-size:var(--ct-fs-3xl);font-weight:700}
+.tk-mine{margin-top:var(--ct-s-5);padding-top:var(--ct-s-5);border-top:1px solid var(--ct-line)}
+.tk-sched{list-style:none;padding:0;margin:var(--ct-s-3) 0 0;display:grid;gap:var(--ct-s-4)}
+.tk-sched li{display:grid;grid-template-columns:9.5em 1fr;gap:var(--ct-s-3)}
+.tk-sched p{margin:var(--ct-s-1) 0 0;color:var(--ct-text-2)}
+.tk-when{font-size:var(--ct-fs-sm);color:var(--ct-text-2);padding-top:2px}
+@media (max-width:480px){.tk-sched li{grid-template-columns:1fr;gap:0}}
+.tk-switch{margin-top:var(--ct-s-3);gap:var(--ct-s-2)}
+.tk-border b{display:block;margin-bottom:var(--ct-s-2)}
+.tk-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--ct-s-3);text-align:center}
+.tk-pair__mid{color:var(--ct-text-3)}
+.tk-link{background:none;border:0;padding:0 var(--ct-s-1);color:var(--ct-link);text-decoration:underline;font:inherit;cursor:pointer;min-height:44px}
+.tk-check{display:flex;gap:var(--ct-s-2);align-items:center;min-height:44px;font-size:var(--ct-fs-sm)}
+.tk-check input{width:20px;height:20px;accent-color:var(--ct-accent)}
+.tk-cards{display:grid;gap:var(--ct-s-4);grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.tk-cards a{display:block;text-decoration:none;color:inherit;height:100%}
+.tk-cards a:hover .ct-panel,.tk-cards a:focus-visible .ct-panel{box-shadow:var(--ct-shadow-2)}
+.tk-cards .ct-h3{margin-bottom:var(--ct-s-2)}
+.tk-signs{display:grid;gap:var(--ct-s-3);grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));padding:0;list-style:none}
+.tk-signs li{background:var(--ct-surface-2);border-radius:var(--ct-r-md);padding:var(--ct-s-4)}
+.tk-signs b{display:block;margin-bottom:var(--ct-s-1)}
+.tk-signs p{margin:0;font-size:var(--ct-fs-sm);color:var(--ct-text-2)}
+.tk-faq details{border-bottom:1px solid var(--ct-line);padding-block:var(--ct-s-3)}
+.tk-faq summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.tk-faq p{color:var(--ct-text-2);margin:var(--ct-s-2) 0 0}
+.tk-foot{padding-block:var(--ct-s-7);margin-top:var(--ct-s-7);border-top:1px solid var(--ct-line);font-size:var(--ct-fs-sm);color:var(--ct-text-2)}
+.tk-foot nav{display:flex;flex-wrap:wrap;gap:var(--ct-s-2) var(--ct-s-4);margin-bottom:var(--ct-s-4)}
+.tk-foot a{color:inherit;min-height:44px;display:inline-flex;align-items:center}
+[hidden]{display:none!important}
+.tk-result{outline:none;scroll-margin-top:72px}
+.ct-field__err{display:none;color:var(--ct-error)}
+.ct-field.is-error .ct-field__err{display:block}
