@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://tsuki.clawtechjp.com/"
 TODAY = "2026-11-10"
-NAV = [("index.html", "ホーム"), ("tsuki.html", "月星座"), ("aisho.html", "相性"), ("suuhi.html", "数秘術")]
+NAV = [("./", "ホーム"), ("tsuki.html", "月星座"), ("aisho.html", "相性"), ("suuhi.html", "数秘術")]
 MOON_ICON = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
              'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>')
 
@@ -34,8 +34,8 @@ def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, cru
     if ld_extra:
         ld += ld_extra
     cur = ' aria-current="page"'
-    nav = "".join(f'<a href="{h}"{cur if h == fname else ""}>{t}</a>' for h, t in NAV)
-    crumb_html = (f'<nav class="ct-crumb" aria-label="パンくず"><a href="index.html">ホーム</a> › {crumb}</nav>' if crumb else "")
+    nav = "".join(f'<a href="{h}"{cur if h == ("./" if fname == "index.html" else fname) else ""}>{t}</a>' for h, t in NAV)
+    crumb_html = (f'<nav class="ct-crumb" aria-label="パンくず"><a href="./">ホーム</a> › {crumb}</nav>' if crumb else "")
     js = ('<script defer src="https://clawtechjp.com/ui/ct-motion.js"></script>'
           '<script defer src="js/data.js"></script><script defer src="js/astro.js"></script><script defer src="js/site.js"></script>') if scripts else ""
     html = f"""<!DOCTYPE html>
@@ -45,11 +45,11 @@ def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, cru
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="{BASE}{fname}">
+<link rel="canonical" href="{url}">
 <meta property="og:title" content="{og_title or title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="{'website' if fname == 'index.html' else 'article'}">
-<meta property="og:url" content="{BASE}{fname}">
+<meta property="og:url" content="{url}">
 <meta property="og:site_name" content="月の占い">
 <meta property="og:image" content="{BASE}img/og.jpg">
 <meta property="og:image:width" content="1120">
@@ -65,7 +65,7 @@ def page(fname, title, desc, h1, lead, body, *, scripts=True, ld_extra=None, cru
 </head>
 <body>
 <a class="ct-skip" href="#main">本文へ移動</a>
-<header class="ct-header tk-header"><div class="ct-container ct-header__in"><a class="tk-brand" href="index.html">{MOON_ICON}月の占い</a><nav class="tk-nav" aria-label="メイン">{nav}</nav></div></header>
+<header class="ct-header tk-header"><div class="ct-container ct-header__in"><a class="tk-brand" href="./">{MOON_ICON}月の占い</a><nav class="tk-nav" aria-label="メイン">{nav}</nav></div></header>
 <main id="main" class="ct-container">
 {crumb_html}
 {hero_html(hero) if hero else ""}<section class="ct-section" style="padding-top:var(--ct-s-5);padding-bottom:var(--ct-s-2)">
